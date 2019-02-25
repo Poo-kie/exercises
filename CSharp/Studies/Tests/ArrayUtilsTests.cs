@@ -79,7 +79,7 @@ namespace Tests
         }
 
         [Fact]
-        public void MaxProfit_ShouldReturnMaximumProfitWithDecreasingPrices()
+        public void MaxProfit_ShouldReturnZeroWithDecreasingPrices()
         {
             var arr = new int[] { 6, 5, 4, 3, 2, 1 };
 
