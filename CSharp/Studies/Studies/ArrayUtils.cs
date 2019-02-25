@@ -8,6 +8,9 @@ namespace Studies
         /// Assumes <paramref name="arr"/> is an array of sorted ints.
         /// Can be empty or a single element
         /// </summary>
+        /// <remarks>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/727/
+        /// </remarks>
         /// <returns>The length of the resized array</returns>
         /// <param name="arr">an array of sorted ints.</param>
         public static int RemoveDuplicatesFromSortedInts(ref int[] arr)
@@ -30,5 +33,41 @@ namespace Studies
 
             return arr.Length;
         }
+
+
+        // If BUY on day x, x+1
+        public static int MaxProfit(int[] prices)
+        {
+            // [ 7, 1, 5, 3, 6, 4 ]
+            // (5-1)+(6-3) > (6-1)
+
+            var buying = false;
+            var profit = 0;
+            var purchased = 0;
+            var maxProfit = 0;
+
+            for (var i = 0; i < prices.Length - 1; i++)
+            {
+                var potentialProfit = prices[i + 1] - prices[i];
+
+                if (potentialProfit > 0)
+                {
+                    purchased = buying ? purchased : prices[i];
+                    profit = prices[i + 1] - purchased;
+                    buying = true;
+                }
+                else
+                {
+                    maxProfit += profit;
+                    buying = false;
+                }
+            }
+
+            if (buying) maxProfit += profit;
+
+            return maxProfit;
+        }
+
+
     }
 }

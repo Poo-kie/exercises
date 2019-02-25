@@ -1,0 +1,14 @@
+{
+  "name": "exercises",
+  "version": "1.0.0",
+  "description": "Exercises to stay fresh",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^3.3.1"
+  }
+}
