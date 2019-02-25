@@ -5,12 +5,8 @@ namespace Studies
     public static class ArrayUtils
     {
         /// <summary>
-        /// Assumes <paramref name="arr"/> is an array of sorted ints.
-        /// Can be empty or a single element
-        /// </summary>
-        /// <remarks>
         /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/727/
-        /// </remarks>
+        /// </summary>
         /// <returns>The length of the resized array</returns>
         /// <param name="arr">an array of sorted ints.</param>
         public static int RemoveDuplicatesFromSortedInts(ref int[] arr)
@@ -35,11 +31,16 @@ namespace Studies
         }
 
 
-        // If BUY on day x, x+1
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/564/
+        /// </summary>
+        /// <param name="prices">Prices of various stocks indexed by day</param>
+        /// <returns>The max profit derived from buying and selling stock from <paramref name="prices"/></returns>
         public static int MaxProfit(int[] prices)
         {
-            // [ 7, 1, 5, 3, 6, 4 ]
-            // (5-1)+(6-3) > (6-1)
+            // for an array [a, b, c, d]
+            // (b - a) + (d - c) > (d - a)
+            // only when b > c
 
             var buying = false;
             var profit = 0;
