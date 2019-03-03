@@ -50,6 +50,37 @@ class ArrayUtils {
         return maxProfit;
     }
 
+    /**
+     * Rotates an array by k with O(1) space
+     * https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/646/
+     * @param {Array} nums An array of numbers
+     * @param {rotate} k The number of slots to rotate each number
+     */
+    static rotate(nums, k) {
+        
+        var shift = k % nums.length;
+        let q = [];
+        let mi = 0;
+        q.unshift(nums[0]);
+
+        for (let i = 0; i < shift; i++) {
+            let j = mi;
+            
+            while (j < nums.length) {   
+                j = j + shift;
+                
+                if (j < nums.length) {
+                    q.unshift(nums[j]);
+                    nums[j] = q.pop();
+                }
+            }
+
+            j = j - nums.length;
+            q.unshift(nums[j]);
+            mi = j;
+            nums[j] = q.pop();
+        }
+    }
 }
 
 module.exports = ArrayUtils;

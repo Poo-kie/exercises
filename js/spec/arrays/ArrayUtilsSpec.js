@@ -46,4 +46,24 @@ describe("ArrayUtils", () => {
             expect(maxProfit).toEqual(7);
         });
     });
+
+    describe("rotate", () => {
+        it("should rotate when k is less than array length", () => {
+            var arr = [1,2,3,4,5,6,7];
+            ArrayUtils.rotate(arr, 3);
+            expect(arr).toEqual([5,6,7,1,2,3,4]);
+        });
+
+        it("should rotate when k is greater than array length", () => {
+            var arr = [1,2,3,4,5,6,7];
+            ArrayUtils.rotate(arr, 13);
+            expect(arr).toEqual([2,3,4,5,6,7,1]);
+        });
+
+        it("should not rotate when k is zero", () => {
+            var arr = [1,2,3,4,5,6,7];
+            ArrayUtils.rotate(arr, 0);
+            expect(arr).toEqual([1,2,3,4,5,6,7]);
+        });
+    });
 });
