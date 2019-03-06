@@ -1,3 +1,5 @@
+var Queue = require("../data_structures/Queue");
+
 class ArrayUtils {
     /**
      * 
@@ -50,6 +52,36 @@ class ArrayUtils {
         return maxProfit;
     }
 
+    /**
+     * Rotates an array by k with O(1) space
+     * https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/646/
+     * @param {Array} nums An array of numbers
+     * @param {rotate} k The number of slots to rotate each number
+     */
+    static rotate(nums, k) {
+        let shift = k % nums.length;
+        
+        let q = new Queue();
+        
+        let lmt = 1;
+
+        for (let i = 0; i < lmt; i++) {
+            let j = i;
+            let cnt = 0;
+            q.enqueue(nums[i]);
+
+            do {
+                cnt++;
+                j += shift;
+                if (j >= nums.length) j -= nums.length;
+                if (j !== i)  q.enqueue(nums[j]);
+                nums[j] = q.dequeue();
+            }
+            while (j !== i);
+
+            if (lmt === 1) lmt = nums.length / cnt;
+        }
+    }
 }
 
 module.exports = ArrayUtils;
