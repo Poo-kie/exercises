@@ -1,3 +1,5 @@
+var Queue = require("../data_structures/Queue");
+
 class ArrayUtils {
     /**
      * 
@@ -57,28 +59,27 @@ class ArrayUtils {
      * @param {rotate} k The number of slots to rotate each number
      */
     static rotate(nums, k) {
+        let shift = k % nums.length;
         
-        var shift = k % nums.length;
-        let q = [];
-        let mi = 0;
-        q.unshift(nums[0]);
+        let q = new Queue();
+        
+        let lmt = 1;
 
-        for (let i = 0; i < shift; i++) {
-            let j = mi;
-            
-            while (j < nums.length) {   
-                j = j + shift;
-                
-                if (j < nums.length) {
-                    q.unshift(nums[j]);
-                    nums[j] = q.pop();
-                }
+        for (let i = 0; i < lmt; i++) {
+            let j = i;
+            let cnt = 0;
+            q.enqueue(nums[i]);
+
+            do {
+                cnt++;
+                j += shift;
+                if (j >= nums.length) j -= nums.length;
+                if (j !== i)  q.enqueue(nums[j]);
+                nums[j] = q.dequeue();
             }
+            while (j !== i);
 
-            j = j - nums.length;
-            q.unshift(nums[j]);
-            mi = j;
-            nums[j] = q.pop();
+            if (lmt === 1) lmt = nums.length / cnt;
         }
     }
 }
