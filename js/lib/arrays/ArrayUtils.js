@@ -72,16 +72,16 @@ class ArrayUtils {
 
             do {
                 cnt++;
-                j += shift;
-                if (j >= nums.length) j -= nums.length;
+                j = (j + shift) % nums.length;
                 if (j !== i)  q.enqueue(nums[j]);
                 nums[j] = q.dequeue();
             }
             while (j !== i);
-
-            if (lmt === 1) lmt = nums.length / cnt;
+            
+            if (cnt !== nums.length) lmt = nums.length / cnt;
         }
     }
+
 }
 
 module.exports = ArrayUtils;
