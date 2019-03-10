@@ -8,12 +8,12 @@ class Rotate {
      * @param {Array} nums An array of numbers
      * @param {rotate} k The number of slots to rotate each number
      */
-    static rotate(nums, k, rotateAcc = 0) {
-        let rotations = this._rotate(nums, k % nums.length, rotateAcc);
+    static rotate(nums, k, acc = 0) {
+        this._rotate(nums, this._getShift(nums, k), acc);
         
-        if (++rotateAcc === nums.length / rotations) return;
+        if (++acc === this._getTotalShiftGroups(nums, k)) return;
 
-        this.rotate(nums, k, rotateAcc);
+        this.rotate(nums, k, acc);
     }
 
     static _rotate(nums, shift, i) {
@@ -21,17 +21,13 @@ class Rotate {
         q.enqueue(nums[i]);
 
         let j = i;
-        let shiftAcc = 0;
 
         do {
-            shiftAcc++;
-            j = (j + shift) % nums.length;
+            j = this._getShift(nums, j + shift);
             q.enqueue(nums[j]);
             nums[j] = q.dequeue();
         }
         while (j !== i);
-
-        return shiftAcc;
     }
 
     /**
@@ -40,27 +36,40 @@ class Rotate {
      * @param {Array} nums An array of numbers
      * @param {rotate} k The number of slots to rotate each number
      */
-    static rotate2(nums, k, rotateAcc = 0) {
-        let rotations = this._innerRotate(nums, nums[rotateAcc], k % nums.length, rotateAcc);
+    static rotate2(nums, k, acc = 0) {
+        let rotations = this._innerRotate(nums, nums[acc], this._getShift(nums, k), acc);
         
-        if (++rotateAcc === nums.length / rotations) return;
+        if (++acc === this._getTotalShiftGroups(nums, k)) return;
 
-        this.rotate2(nums, k, rotateAcc);
+        this.rotate2(nums, k, acc);
     }
 
-    static _innerRotate(nums, prev, shift, idx, start = undefined, shiftAcc = 0) {
+    static _innerRotate(nums, prev, shift, idx, start = undefined) {
         if (start === undefined) start = idx;
 
-        let j = (idx + shift) % nums.length;
+        let j = this._getShift(nums, idx + shift);
         let tmp = nums[j];
-        
-        shiftAcc++;
         nums[j] = prev;
         
-        if (j === start) return shiftAcc;
+        if (j === start) return;
 
-        return this._innerRotate(nums, tmp, shift, j, start, shiftAcc);
+        this._innerRotate(nums, tmp, shift, j, start);
     }
+
+    static _getShift(arr, rotateLength) {
+        return rotateLength % arr.length;
+    }
+
+    static _getTotalShiftGroups(arr, rotateLength) {
+        return this._gcd(arr.length, this._getShift(arr, rotateLength));
+    }
+
+    static _gcd(p, q) {
+        if (p < q) throw new Error("p must be greater than q");
+        if (q === 0) return p;
+        
+        return this._gcd(q, p % q);
+    };
 }
 
 module.exports = Rotate;
