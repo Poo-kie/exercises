@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Studies 
+namespace Studies.Arrays
 {
     public static class MaxProfitExercises
     {

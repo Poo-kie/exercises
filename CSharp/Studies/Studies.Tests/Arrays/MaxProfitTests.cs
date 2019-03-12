@@ -1,7 +1,7 @@
-using Studies;
+using Studies.Arrays;
 using Xunit;
 
-namespace Tests
+namespace Studies.Tests.Arrays
 {
     public class MaxProfitTests
     {
