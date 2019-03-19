@@ -15,7 +15,7 @@ namespace Studies.Arrays
         {
             Rotate(nums, GetShift(nums, k), GetShiftGroups(nums, k), 0);
         }
-
+        
         private static void Rotate(int[] nums, int shift, int totalGroups, int groupsRotated) 
         {
             RotateGroup(nums, shift, groupsRotated);
@@ -38,6 +38,39 @@ namespace Studies.Arrays
                 q.Enqueue(nums[j]);
                 nums[j] = q.Dequeue();
             } while (j != idx);
+        }
+
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/646/
+        /// </summary>
+        /// <param name="nums">An array of numbers</param>
+        /// <param name="k">The number of slots to rotate each number</param>
+        public static void Rotate2(int[] nums, int k)
+        {
+            Rotate2(nums, GetShift(nums, k), GetShiftGroups(nums, k), 0);
+        }
+
+        private static void Rotate2(int[] nums, int shift, int totalGroups, int groupsRotated)
+        {
+            RotateGroup2(nums, nums[groupsRotated], shift, groupsRotated);
+
+            if (++groupsRotated == totalGroups) return;
+
+            Rotate2(nums, shift, totalGroups, groupsRotated);
+        }
+
+        private static void RotateGroup2(int[] nums, int prev, int shift, int idx, int start = 0)
+        {
+            if (start == 0) start = idx;
+
+            var j = GetShift(nums, idx + shift);
+
+            var tmp = nums[j];
+            nums[j] = prev;
+            
+            if (start == j) return;
+
+            RotateGroup2(nums, tmp, shift, j, start);
         }
 
         private static int GetShift(int[] nums, int rotateLength)
