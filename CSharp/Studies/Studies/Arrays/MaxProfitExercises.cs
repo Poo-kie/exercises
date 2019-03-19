@@ -41,5 +41,77 @@ namespace Studies.Arrays
 
             return maxProfit;
         }
+
+        /// <summary>
+        /// A recursive version
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/564/
+        /// </summary>
+        /// <param name="prices">Prices of various stocks indexed by day</param>
+        /// <returns>The max profit derived from buying and selling stock from <paramref name="prices"/></returns>
+        public static int MaxProfit2(int[] prices)
+        {
+            return MaxProfit2(prices, 0, 0);
+        }
+
+        private static int MaxProfit2(int[] prices, int nextIndex, int maxProfit)
+        {
+            var purchase = FindPurchaseIndex(prices, nextIndex);
+            
+            if (!purchase.Found)
+            {
+                return maxProfit;
+            }
+            
+            var sell = FindSellIndex(prices, purchase.Index);
+            maxProfit += prices[sell.Index] - prices[purchase.Index];
+                
+            return MaxProfit2(prices, sell.Index, maxProfit);
+        }
+
+        private static FindResult FindPurchaseIndex(int[] prices, int nextIndex) 
+        {
+            if ((nextIndex + 1) >= prices.Length)
+            {
+                return new FindResult
+                {
+                    Found = false,
+                    Index = nextIndex
+                };
+            }
+
+            if (prices[nextIndex + 1] > prices[nextIndex])
+            {
+                return new FindResult 
+                {
+                    Found = true,
+                    Index = nextIndex
+                };
+            }
+
+            nextIndex++;
+            return FindPurchaseIndex(prices, nextIndex);
+        }
+
+        private static FindResult FindSellIndex(int[] prices, int nextIndex)
+        {
+            if ((nextIndex + 1) >= prices.Length || prices[nextIndex + 1] < prices[nextIndex])
+            {
+                return new FindResult
+                {
+                    Found = true,
+                    Index = nextIndex
+                };
+            }
+
+            nextIndex++;
+            return FindSellIndex(prices, nextIndex);
+        }
+
+        private class FindResult
+        {
+            public bool Found { get; set; }
+
+            public int Index { get; set; }
+        }
     }
 }
