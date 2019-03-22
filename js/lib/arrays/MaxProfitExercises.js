@@ -1,4 +1,4 @@
-class MaxProfit {
+class MaxProfitExercises {
     
     /**
      * 
@@ -34,4 +34,4 @@ class MaxProfit {
     }
 }
 
-module.exports = MaxProfit;
+module.exports = MaxProfitExercises;

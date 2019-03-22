@@ -1,6 +1,6 @@
 const Queue = require("../data_structures/Queue");
 
-class Rotate {
+class RotateExercises {
     
     /**
      * Rotates an array by k with O(1) space
@@ -72,4 +72,4 @@ class Rotate {
     };
 }
 
-module.exports = Rotate;
+module.exports = RotateExercises;

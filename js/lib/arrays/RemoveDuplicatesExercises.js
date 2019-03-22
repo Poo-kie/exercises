@@ -1,4 +1,4 @@
-class RemoveDuplicates {
+class RemoveDuplicatesExercises {
     
     /**
      * 
@@ -41,4 +41,4 @@ class RemoveDuplicates {
     }
 }
 
-module.exports = RemoveDuplicates;
+module.exports = RemoveDuplicatesExercises;
