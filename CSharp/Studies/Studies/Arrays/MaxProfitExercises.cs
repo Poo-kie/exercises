@@ -62,10 +62,10 @@ namespace Studies.Arrays
                 return maxProfit;
             }
             
-            var sell = FindSellIndex(prices, purchase.Index);
+            var sell = FindSellIndex(prices, purchase.Index + 1);
             maxProfit += prices[sell.Index] - prices[purchase.Index];
                 
-            return MaxProfit2(prices, sell.Index, maxProfit);
+            return MaxProfit2(prices, sell.Index + 1, maxProfit);
         }
 
         private static FindResult FindPurchaseIndex(int[] prices, int nextIndex) 
