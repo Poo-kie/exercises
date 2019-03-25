@@ -1,4 +1,4 @@
-describe("Rotate", () => {
+describe("RotateExercises", () => {
     let RotateExercises = require("../../lib/arrays/RotateExercises");
 
     describe("rotate", () => {

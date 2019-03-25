@@ -1,4 +1,4 @@
-describe("RemoveDuplicates", () => {
+describe("RemoveDuplicatesExercises", () => {
     let RemoveDuplicatesExercises = require("../../lib/arrays/RemoveDuplicatesExercises");
 
     describe("removeDuplicatesFromSortedInts", () => {

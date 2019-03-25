@@ -1,4 +1,4 @@
-describe("MaxProfit", () => {
+describe("MaxProfitExercises", () => {
     let MaxProfitExercises = require("../../lib/arrays/MaxProfitExercises");
 
     describe("maxProfit", () => {    
