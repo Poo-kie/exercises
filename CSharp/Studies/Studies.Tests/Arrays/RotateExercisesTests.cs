@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Studies.Tests.Arrays
 {
-    public class RotateTests
+    public class RotateExercisesTests
     {
         [Fact]
         public void Rotate_ShouldRotateKTimesWhenArrayLengthIsMoreThanKAndPrime()

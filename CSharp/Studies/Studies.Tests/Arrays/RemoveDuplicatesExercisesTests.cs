@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Studies.Tests.Arrays
 {
-    public class RemoveDuplicatesTests
+    public class RemoveDuplicatesExercisesTests
     {
         [Fact]
         public void RemoveDuplicatesFromSortedInts_ShouldRemoveDuplicatesAndReturnNewArrLength()

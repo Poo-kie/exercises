@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Studies.Tests.Arrays
 {
-    public class MaxProfitTests
+    public class MaxProfitExercisesTests
     {
         [Fact]
         public void MaxProfit_ShouldReturnMaximumProfitWithStaggeredPrices()
